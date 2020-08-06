@@ -1,0 +1,14 @@
+package eiei;
+
+import java.util.Scanner;
+
+public class hello {
+	public static void main(String[] args) {
+                Scanner s1=new Scanner(System.in);
+		System.out.print("请输入一个年龄：");
+		int a=s1.nextInt();
+		boolean isPrimaryStudent=a>=6 && a<=12;
+		System.out.println(isPrimaryStudent ? "是":"否");
+                                }
+           }
+}
