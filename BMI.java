@@ -1,8 +1,6 @@
 package eiei;
-
 import java.util.Scanner;
-
-public class hello {
+public class BMI {
 	public static void main(String[] args) {
                 Scanner s1=new Scanner(System.in);
 		System.out.print("请输入身高：");
