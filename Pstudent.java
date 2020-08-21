@@ -1,4 +1,3 @@
-```java
 public class PStudent {
     public static void main(String[] args) {
         Person p = new Person("小程", 12);
@@ -49,7 +48,4 @@ public class PrimaryStudent extends Student{
 	}
 
 }
-
-
-```
 
