@@ -1,4 +1,3 @@
-```java
 public class csbd{
     public static void main(String[] args){
         Person p=new Person();
@@ -18,5 +17,4 @@ class Person{
         this.age=age;
     }
 }
-```
 
