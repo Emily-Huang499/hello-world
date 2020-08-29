@@ -2,7 +2,7 @@ package test;
 
 import java.util.*;
 
-public class MissingNumbers {
+public class MissingNumberss {
     public static void main(String[] args) {
         final int start = 10;
         final int end = 20;
