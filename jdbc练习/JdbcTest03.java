@@ -1,33 +1,46 @@
 package com.emilytest.util;
 
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class JdbcTest03 {
     public static void main(String[] args) {
-        Map<String,String> userLoginInfo = initUI();
-        boolean loginSuccess = login(userLoginInfo);
-        System.out.println(loginSuccess ? "登录成功" : "登录失败");
-    }
+        Connection conn = null;
+        Statement stmt = null;
+        try {
+            DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 
-    private static boolean login(Map<String, String> userLoginInfo) {
-        return false;
-    }
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/emilytest?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC","root","1130");
 
-    private static Map<String, String> initUI() {
-        Scanner s = new Scanner(System.in);
-        System.out.print("用户名：");
-        String LoginName = s.next();
+            stmt = conn.createStatement();
 
-        System.out.print("密码：");
-        String Loginpwd = s.next();
+            String sql = "update dept set dname ='人事部',loc = '北京' where deptno = 40";
 
-        Map<String,String> userLoginInfo = new HashMap<>();
-        userLoginInfo.put("LoginName",LoginName);
-        userLoginInfo.put("Loginpwd",Loginpwd);
+            int count = stmt.executeUpdate(sql);
 
-        return userLoginInfo;
+            System.out.println(count == 1 ?"更新成功":"更新失败");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (stmt != null){
+                try {
+                    stmt.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (conn != null){
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
     }
 }
