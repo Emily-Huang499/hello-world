@@ -1,0 +1,21 @@
+a{
+	color: #FF69B4;
+	font-size: 50px;
+	text-decoration: none;
+	cursor: wait;
+}
+#baiduSpan{
+	text-decoration: underline;
+	cursor: pointer;
+}
+hr{
+	color: green;
+	size: 20px;
+}
+.baiduLogin{
+	border: 2px lightseagreen solid;
+	color: blueviolet;
+}
+ul{
+	list-style-type: none;
+}

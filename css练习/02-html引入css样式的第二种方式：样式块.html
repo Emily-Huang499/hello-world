@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>html引入css样式的第二种方式：样式块</title>
+		<style type="text/css">
+		#mydiv{
+			width:200px;
+			height: 200px;
+			background-color: palevioletred;
+			border: 2px skyblue solid;
+		}
+		span{
+			width: 200px;
+			height: 200px;
+			background-color: aquamarine;
+			border: 2px black solid;
+		}
+		.myInfo{
+			border:1px hotpink solid;
+			color: saddlebrown;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="mydiv">
+			这是html引入css样式的第二种方式：样式块(id选择器)
+		</div>
+		<br />
+		<span>
+			这是html引入css样式的第二种方式：样式块(标签选择器)
+		</span>
+		<br />
+		<span>
+			这是html引入css样式的第二种方式：样式块(标签选择器)
+		</span>
+		<br />
+		<span>
+			这是html引入css样式的第二种方式：样式块(标签选择器)
+		</span>
+		<br />
+		<span>
+			这是html引入css样式的第二种方式：样式块(标签选择器)
+		</span>
+		<br />
+		<br />
+		<br />
+		<input type="text" name="username" class="myInfo" />
+		<br />
+		<input type="password" name="password" class="myInfo" />
+		<br />
+		<select name="grade" class="myInfo">
+			<option>小学</option>
+			<option>初中</option>
+			<option>高中</option>
+			<option>大学</option>
+		</select>
+		<br />
+		<textarea class="myInfo">这是html引入css样式的第二种方式：样式块(类选择器)</textarea>
+	</body>
+</html>
