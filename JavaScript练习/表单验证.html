@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表单验证</title>
+		<style type="text/css">
+			span{
+				color: red;
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			window.onload = function(){
+				var unameErroEltSpan = document.getElementById("unameErro");
+				
+				var unameElt = document.getElementById("uname");
+				unameElt.onblur = function(){
+					var username = unameElt.value;
+					
+					username = username.trim();
+					if(username == ""){
+						unameErroEltSpan.innerText="用户名不能为空";
+					}else{
+						if(username.length <6 || username.length >14){
+							unameErroEltSpan.innerText = "用户名长度在[6-14]之间"
+						}else{
+							var usernameRegExp = /^[A-Za-z0-9]+$/;
+							var ok = usernameRegExp.test(username);
+							if(ok){
+								
+							}else{
+								unameErroEltSpan.innerText="用户名只能由数字和字母组成";
+							}
+						}
+					}
+				}	
+				unameElt.onfocus = function(){
+					if(unameErroEltSpan.innerText != ""){
+						unameElt.value = "";
+					}
+					unameErroEltSpan.innerText = "";	
+				}
+				
+				var upwdErroSpan = document.getElementById("upwdErro");
+				var upwdErroSpan2 = document.getElementById("upwdErro2");
+				var pwdElt = document.getElementById("upwd");
+				var pwdElt2 = document.getElementById("upwd2")
+				
+				pwdElt2.onblur = function(){
+					var userpwd = pwdElt.value;
+					var userpwd2 = pwdElt2.value;
+					if(userpwd != userpwd2){
+						upwdErroSpan2.innerText = "密码不一致！";
+					}else{
+						if(userpwd == "" || userpwd2 == ""){
+							upwdErroSpan.innerText = "请输入密码与确认密码"
+						}else{
+						
+					   }
+					}
+					pwdElt2.onfocus = function(){
+						if(upwdErroSpan.innerText !="" || upwdErroSpan2.innerText != ""){
+							pwdElt2.value = "";
+						}
+						upwdErroSpan.innerText =""; 
+						upwdErroSpan2.innerText = "";
+					}
+				}
+				
+				var emailErroSpan = document.getElementById("emailErro");
+				var emailElt = document.getElementById("email");
+				
+				emailElt.onblur = function(){
+					var email = emailElt.value;
+					var emailRegExp = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+					var ok = emailRegExp.test(email);
+					if(!ok){
+						emailErroSpan.innerText = "请输入正确的邮箱地址";
+					}else{
+						
+					}
+				}
+				emailElt.onfocus = function(){
+					if(emailErroSpan.innerText != ""){
+						emailElt.value = "";
+					}
+					emailErroSpan.innerText = "";
+				}
+				
+				var submitBtnElt = document.getElementById("btn");
+				btn.onclick = function(){
+					unameElt.focus();
+					unameElt.blur();
+					pwdElt.focus();
+					pwdElt.blur();
+					pwdElt2.focus();
+					pwdElt2.blur();
+					emailElt.focus();
+					emailElt.blur();
+					
+					if(unameErroEltSpan.innerText == "" && upwdErroSpan.innerText =="" && upwdErroSpan2.innerText == "" && emailErroSpan.innerText == ""){
+						var userformElt = document.getElementById("userform");
+						userformElt.action="http://localhost:8080/oa/login";
+						userformElt.submit();
+					}
+				}
+			}
+		</script>
+		
+		
+		<form id="userform">
+			<table>
+				<tr>
+					<td>用户名</td>
+					<td><input type="text" name="username" id="uname" /></td>
+					<td><span id="unameErro"></span></td>
+				</tr>
+				
+				<tr>
+					<td>密码</td>
+					<td><input type="password" name="userpassword1" id="upwd" /></td>
+					<td><span id="upwdErro"></span></td>
+				</tr>
+				
+				<tr>
+					<td>确认密码</td>
+					<td><input type="password" name="userpassword2" id="upwd2" /></td>
+					<td><span id="upwdErro2"></span></td>
+				</tr>
+				
+				<tr>
+					<td>邮箱</td>
+					<td><input type="text" name="email" id="email" /></td>
+					<td><span id="emailErro"></span></td>
+				</tr>
+				
+				<tr>
+					<td>邮箱</td>
+					<td><input type="text" name="email" id="email" /></td>
+					<td><span id="emailErro"></span></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="center">
+						<input type="button" value="注册" id="btn" >
+					    <input type="reset" value="重置" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</body>
+</html>
