@@ -1,4 +1,4 @@
-package com.bjpowernode.controller;
+package com.emily.controller;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +10,17 @@ public class OneFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest)servletRequest;
-        HttpSession session = request.getSession(false);
-        if (session == null){
-            request.getRequestDispatcher("/login_error.html").forward(servletRequest,servletResponse);
+        HttpSession session = null;
+        String uri = request.getRequestURI();
+        if ("login".indexOf(uri)!= -1 || "/myWeb/".equals(uri)){
+            filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
-        filterChain.doFilter(servletRequest, servletResponse);
-
+        session = request.getSession(false);
+        if (session != null){
+            filterChain.doFilter(servletRequest,servletResponse);
+            return;
+        }
+        request.getRequestDispatcher("index_error.html").forward(servletRequest,servletResponse);
     }
 }
