@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emily.dao.StudentDao">
+    <select id="selectStudents" resultType="com.emily.domain.Student">
+     select id,name,email,age from student order by id
+  </select>
+    <insert id="insertStudent">
+        insert into student values (#{id},#{name},#{email},#{age})
+    </insert>
+    <update id="updateStudent">
+        update student set name='Angela',age='25',email='Angela@163.com'where id = '1004'
+    </update>
+    <select id="selectStudent" parameterType="int" resultType="com.emily.domain.Student">
+        select * from student where id = #{studentId}
+    </select>
+    <select id="selectMultiParam" resultType="com.emily.domain.Student">
+        select * from student where name= #{myname} or age= #{myage}
+    </select>
+    <select id="selectMultiObject" resultType="com.emily.domain.Student">
+        select * from student where name=#{paramname} or age=#{paramage}
+    </select>
+    <select id="selectMultiPosition" resultType="com.emily.domain.Student">
+        select * from student where id= #{arg0} or age=#{arg1}
+    </select>
+    <select id="selectMultiMap" resultType="com.emily.domain.Student">
+        select * from student where name=#{myname} or age=#{myage}
+    </select>
+</mapper>
