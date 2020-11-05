@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emily.dao.StudentDao">
+  
+    <select id="selectReturnViewStudent" resultType="com.emily.vo.ViewStudent">
+        select id,name from student where id=#{sid}
+    </select>
+    <select id="countStudent" resultType="java.lang.Integer">
+        select count(*) from student
+    </select>
+    <select id="selectMapById" resultType="java.util.HashMap">
+        select id,name from student where id=#{stuid}
+    </select>
+
+
+    <resultMap id="studentMap" type="com.emily.domain.Student">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <result column="email" property="email"></result>
+        <result column="age" property="age"></result>
+    </resultMap>
+    <select id="selectAllStudents" resultMap="studentMap">
+        select id,name ,email,age from student
+    </select>
+
+    <resultMap id="myStudentMap" type="com.emily.domain.MyStudent">
+        <id column="id" property="stuid"></id>
+        <result column="name" property="stuname"></result>
+        <result column="email" property="stuemail"></result>
+        <result column="age" property="stuage"></result>
+    </resultMap>
+    <select id="selectMyStudent" resultMap="myStudentMap">
+        select id,name,email,age from student
+    </select>
+    <select id="selectDiffColProperty" resultType="com.emily.domain.MyStudent">
+        select id as stuid,name as stuname,email as stuemail,age as stuage from student
+    </select>
+    <select id="selectLikeOne" resultType="com.emily.domain.Student">
+        select id,name,email,age from student where name like #{name}
+    </select>
+    <select id="selectLikeTwo" resultType="com.emily.domain.Student">
+        select id,name,email,age from student where name like "%" #{name} "%"
+    </select>
+
+</mapper>
