@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.emily.dao2.StudentDao">
+    <sql id="select *">
+        select id,name,email,age from student
+    </sql>
+    
+    <select id="selectStudentIf" resultType="com.emily.domain.Student">
+        select id,name,email,age from student where
+        <if test="name != null || name!=''">
+            name = #{name}
+        </if>
+        <if test="age>0">
+            and age > #{age}
+        </if>
+    </select>
+
+    <select id="selectStudentWhere" resultType="com.emily.domain.Student">
+        select id,name,email,age from student
+        <where>
+        <if test="id!=null || id!='' ">
+             id= #{id}
+        </if>
+        <if test="age>0">
+            or age > #{age}
+        </if>
+        </where>
+    </select>
+
+    <select id="selectStudentForEach" resultType="com.emily.domain.Student">
+        select * from student where id in
+        <foreach collection="list" item="myid" open="(" separator="," close=")">
+            #{myid}
+        </foreach>
+    </select>
+    <select id="selectStudentForeachTwo" resultType="com.emily.domain.Student">
+        select * from student where id in
+        <foreach collection="list" item="stu" open="(" close=")" separator=",">
+            #{stu.id}
+        </foreach>
+    </select>
+    <select id="selectStudentForeachThree" resultType="com.emily.domain.Student">
+        <include refid="select *"/> where age in
+        <foreach collection="list" item="stu" open="(" close=")" separator=",">
+            #{stu.age}
+        </foreach>
+    </select>
+
+    <select id="selectByPageHelper" resultType="com.emily.domain.Student">
+        <include refid="select *"/> order by id
+    </select>
+</mapper>
