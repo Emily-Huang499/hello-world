@@ -1,0 +1,17 @@
+#：使用？在sql语句中做占位符，使用PreparedStatement执行sql,效率高，安全性高，能够避免sql注入。
+$：不使用占位符，是字符串连接方式，使用statement执行sql,效率低，有注入风险，安全性低，可以用来替换表名或列名。
+$替换列名的相关代码：
+    1. List<Student> selectby$(@Param("colName") String colName);
+    2. <select id="selectby$" resultType="com.emily.domain.Student">
+        select * from student order by ${colName}
+         </select>
+    3.@Test
+    public void testSelectby$(){
+        SqlSession sqlSession = MyBatisUtils.getSqlSession();
+        StudentDao dao = sqlSession.getMapper(StudentDao.class);
+        List<Student> students = dao.selectby$("age");
+        for (Student stu:students){
+            System.out.println("$占位符注入sql语句" + stu);
+        }
+        sqlSession.close();
+    }
