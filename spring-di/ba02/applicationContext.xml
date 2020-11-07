@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myschool" class="com.emily.ba02.School"><!--引用类型的设值注入-->
+        <property name="name" value="厦门大学"></property>
+        <property name="address" value="厦门"></property>
+    </bean>
+
+    <bean id="mystudent" class="com.emily.ba02.Student">
+        <property name="name" value="Emily"></property>
+        <property name="age" value="20"></property>
+        <property name="school" ref="myschool"></property>
+    </bean>
+</beans>
