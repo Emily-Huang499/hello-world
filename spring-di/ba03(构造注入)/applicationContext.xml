@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="myschool" class="com.emily.ba03.School"><!--引用类型的设值注入-->
+        <property name="name" value="复旦大学"></property>
+        <property name="address" value="上海"></property>
+    </bean>
+
+    <bean id="mystudent" class="com.emily.ba03.Student"><!--构造注入-->
+        <constructor-arg name="stuname" value="Kris"></constructor-arg>
+        <constructor-arg name="stuage" value="20"></constructor-arg>
+        <constructor-arg name="stuschool" ref="myschool"></constructor-arg>
+    </bean>
+
+    <bean id="myschool2" class="com.emily.ba03.School"><!--引用类型的设值注入-->
+        <property name="name" value="福州大学"></property>
+        <property name="address" value="福州"></property>
+    </bean>
+    <bean id="mystudent2" class="com.emily.ba03.Student"><!--构造注入-->
+        <constructor-arg index="0" value="Amy"></constructor-arg>
+        <constructor-arg index="1" value="18"></constructor-arg>
+        <constructor-arg index="2" ref="myschool2"></constructor-arg>
+    </bean>
+    <bean id="myfile" class="java.io.File">
+        <constructor-arg name="parent" value="D:\java测试"></constructor-arg>
+        <constructor-arg name="child" value="birth.class"></constructor-arg>
+    </bean>
+</beans>

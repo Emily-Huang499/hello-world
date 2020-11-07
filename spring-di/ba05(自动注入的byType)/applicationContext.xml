@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="mystudent" class="com.emily.ba05.Student" autowire="byType">
+        <property name="name" value="张三"></property>
+        <property name="age" value="22"></property>
+    </bean>
+<!--    <bean id="myschool" class="com.emily.ba05.School">-->
+<!--        <property name="name" value="北京大学"></property>-->
+<!--        <property name="address" value="北京"></property>-->
+<!--    </bean>-->
+
+    <bean id="prischool" class="com.emily.ba05.PrimarySchool">
+        <property name="name" value="北京小学"></property>
+        <property name="address" value="北京大兴区"></property>
+    </bean>
+
+</beans>
