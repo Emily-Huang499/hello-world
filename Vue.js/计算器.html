@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>双向数据绑定方式实现简单的计算器</title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="app">
+			<input type="text" v-model="num1" />
+			<select v-model="csign">
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>
+			</select>
+			<input type="text" v-model="num2" />
+			<input type="button" value="=" @click="count"/>
+			<input type="text" v-model="result" />
+		</div>
+		<script>
+			var vm = new Vue({
+				
+				el:"#app",
+				
+				data:{
+					num1:0,
+					num2:0,
+					csign:"+",
+					result:0
+				},
+				
+				methods:{
+					count(){
+						if(this.csign=="+"){
+							this.result=parseInt(this.num1)+parseInt(this.num2);
+						}else if(this.csign=="-"){
+							this.result=parseInt(this.num1)-parseInt(this.num2);
+						}else if(this.csign=="*"){
+							this.result=parseInt(this.num1)*parseInt(this.num2);
+						}else if(this.csign=="/"){
+							this.result=parseInt(this.num1)/parseInt(this.num2);
+						}
+					}
+				}
+				
+			})
+		</script>
+	</body>
+</html>
